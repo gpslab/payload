@@ -23,9 +23,9 @@ class PayloadSerializer implements NormalizerInterface, DenormalizerInterface
 {
     const PATTERN = '%s|%s';
     const REGEXP = '/^
-            (?<class>[a-zA-Z_][a-zA-Z0-9_]*)| # class name
-            (?<payload>.+)                    # payload
-        $/x';
+            (?<class>[a-zA-Z_][a-zA-Z0-9_\\\]*)\| # class name
+            (?<payload>.+)                        # payload
+        $/xs';
 
     /**
      * @var int
