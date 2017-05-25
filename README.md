@@ -8,3 +8,15 @@
 [![License](https://img.shields.io/packagist/l/gpslab/payload.svg?maxAge=3600)](https://github.com/gpslab/payload)
 
 # The simple infrastructure component for create payload message
+
+## Installation
+
+Pretty simple with [Composer](http://packagist.org), run:
+
+```sh
+composer require gpslab/payload
+```
+
+## License
+
+This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE
