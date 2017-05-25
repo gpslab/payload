@@ -1,2 +1,1 @@
-# payload
-Simple infrastructure component for create payload message
+# The simple infrastructure component for create payload message

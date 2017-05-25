@@ -1,0 +1,26 @@
+{
+    "name": "gpslab/payload",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/gpslab/payload",
+    "description": "The simple infrastructure component for create payload message",
+    "autoload": {
+        "psr-4": {
+            "GpsLab\\Component\\Payload\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GpsLab\\Component\\Payload\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "gpslab/cqrs": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "scrutinizer/ocular": "~1.3",
+        "satooshi/php-coveralls": "^1.0"
+    }
+}
