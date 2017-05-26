@@ -11,19 +11,19 @@
 namespace GpsLab\Component\Payload\Tests\Serializer;
 
 use GpsLab\Component\Payload\Payload;
-use GpsLab\Component\Payload\Serializer\PayloadSerializer;
-use GpsLab\Component\Payload\Tests\Fixture\UpdatedContactEvent;
+use GpsLab\Component\Payload\Serializer\PayloadNormalizer;
+use GpsLab\Component\Payload\Tests\Fixture\RenamedContactEvent;
 
 class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var PayloadSerializer
+     * @var PayloadNormalizer
      */
     private $serializer;
 
     protected function setUp()
     {
-        $this->serializer = new PayloadSerializer();
+        $this->serializer = new PayloadNormalizer();
     }
 
     public function testSupportsNormalization()
@@ -40,24 +40,24 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
 
     public function testSupportsDenormalization()
     {
-        $query = new UpdatedContactEvent([
+        $query = new RenamedContactEvent([
             'contact_id' => 123,
             'old_name' => 'foo',
             'new_name' => 'bar',
         ]);
-        $data = UpdatedContactEvent::class.'|'.json_encode($query->payload());
+        $data = RenamedContactEvent::class.'|'.json_encode($query->payload());
 
         $this->assertTrue($this->serializer->supportsDenormalization($data, Payload::class));
     }
 
     public function testNormalize()
     {
-        $query = new UpdatedContactEvent([
+        $query = new RenamedContactEvent([
             'contact_id' => 123,
             'old_name' => 'foo',
             'new_name' => 'bar',
         ]);
-        $data = UpdatedContactEvent::class.'|'.json_encode($query->payload());
+        $data = RenamedContactEvent::class.'|'.json_encode($query->payload());
 
         $this->assertEquals($data, $this->serializer->normalize($query));
     }
@@ -65,13 +65,13 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
     public function testNormalizeCustom()
     {
         $json_options = JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT;
-        $query = new UpdatedContactEvent([
+        $query = new RenamedContactEvent([
             'contact_id' => 123,
             'old_name' => 'Дмитрий Анатольевич Медведев',
             'new_name' => 'Владимир Владимирович Путин',
         ]);
-        $data = UpdatedContactEvent::class.'|'.json_encode($query->payload(), $json_options);
-        $serializer = new PayloadSerializer($json_options);
+        $data = RenamedContactEvent::class.'|'.json_encode($query->payload(), $json_options);
+        $serializer = new PayloadNormalizer($json_options);
 
         $this->assertEquals($data, $serializer->normalize($query));
     }
@@ -91,11 +91,11 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
             'old_name' => 'Дмитрий Анатольевич Медведев',
             'new_name' => 'Владимир Владимирович Путин',
         ];
-        $data = UpdatedContactEvent::class.'|'.json_encode($payload);
+        $data = RenamedContactEvent::class.'|'.json_encode($payload);
 
         $query = $this->serializer->denormalize($data, Payload::class);
 
-        $this->assertInstanceOf(UpdatedContactEvent::class, $query);
+        $this->assertInstanceOf(RenamedContactEvent::class, $query);
         $this->assertEquals($payload, $query->payload());
     }
 
@@ -107,12 +107,12 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
             'old_name' => 'Дмитрий Анатольевич Медведев',
             'new_name' => 'Владимир Владимирович Путин',
         ];
-        $data = UpdatedContactEvent::class.'|'.json_encode($payload, $json_options);
-        $serializer = new PayloadSerializer($json_options);
+        $data = RenamedContactEvent::class.'|'.json_encode($payload, $json_options);
+        $serializer = new PayloadNormalizer($json_options);
 
         $query = $serializer->denormalize($data, Payload::class);
 
-        $this->assertInstanceOf(UpdatedContactEvent::class, $query);
+        $this->assertInstanceOf(RenamedContactEvent::class, $query);
         $this->assertEquals($payload, $query->payload());
     }
 }

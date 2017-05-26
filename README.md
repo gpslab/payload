@@ -17,6 +17,114 @@ Pretty simple with [Composer](http://packagist.org), run:
 composer require gpslab/payload
 ```
 
+## Usage
+
+This library automatically fill the fields of the object with payload data.
+
+For example, create a simple message
+
+```php
+class SimpleMessage extends PayloadMessage
+{
+    public $id = 0;
+
+    public $name = '';
+}
+```
+
+Fill the message
+
+```php
+$message = new SimpleMessage([
+    'id' => 132,
+    'name' => 'foo',
+]);
+
+$message->id; // 123
+$message->name; // foo
+$message->payload(); // ['id' => 132, 'name' => 'foo']
+```
+
+> **Notice:** All fields specified in the payload must be exist.
+
+You can use protected fields for data. It's convenient to make the fields as read-only.
+
+```php
+class SimpleMessage extends PayloadMessage
+{
+    protected $id = 0;
+
+    protected $name = '';
+
+    public function id()
+    {
+        return $this->id;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+}
+```
+
+Fill the message
+
+```php
+$message = new SimpleMessage([
+    'id' => 132,
+    'name' => 'foo',
+]);
+
+$message->id(); // 123
+$message->name(); // foo
+$message->payload(); // ['id' => 132, 'name' => 'foo']
+```
+
+> **Notice:** Private fields can't be filled.
+
+
+### CQRS
+
+You can use payload in [CQRS](https://github.com/gpslab/cqrs) infrastructure.
+
+Command to rename contact:
+
+```php
+class RenameContactCommand extends PayloadCommand
+{
+    public $contact_id = 0;
+
+    public $new_name = '';
+}
+```
+
+Query for get contact by identity:
+
+```php
+class ContactByIdentityQuery extends PayloadQuery
+{
+    public $id = 0;
+}
+```
+
+### Domain Events
+
+You can use payload in [Domain Events](https://github.com/gpslab/domain-event).
+
+Event, contact was renamed
+
+```php
+class RenamedContactEvent extends PayloadDomainEvent
+{
+    public $contact_id = 0;
+
+    public $old_name = '';
+
+    public $new_name = '';
+}
+```
+
 ## License
 
 This bundle is under the [MIT license](http://opensource.org/licenses/MIT). See the complete license in the file: LICENSE

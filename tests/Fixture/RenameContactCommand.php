@@ -12,7 +12,7 @@ namespace GpsLab\Component\Payload\Tests\Fixture;
 
 use GpsLab\Component\Payload\PayloadCommand;
 
-class UpdateContactCommand extends PayloadCommand
+class RenameContactCommand extends PayloadCommand
 {
     /**
      * @var int
@@ -22,7 +22,7 @@ class UpdateContactCommand extends PayloadCommand
     /**
      * @var string
      */
-    protected $name = '';
+    protected $new_name = '';
 
     /**
      * @var int
@@ -40,8 +40,8 @@ class UpdateContactCommand extends PayloadCommand
     /**
      * @return string
      */
-    public function name()
+    public function newName()
     {
-        return $this->name;
+        return $this->new_name;
     }
 }

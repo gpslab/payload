@@ -12,7 +12,7 @@ namespace GpsLab\Component\Payload\Tests\Fixture;
 
 use GpsLab\Component\Payload\PayloadDomainEvent;
 
-class UpdatedContactEvent extends PayloadDomainEvent
+class RenamedContactEvent extends PayloadDomainEvent
 {
     /**
      * @var int

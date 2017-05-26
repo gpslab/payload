@@ -13,7 +13,7 @@ namespace GpsLab\Component\Payload\Tests;
 use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\PayloadMessage;
 use GpsLab\Component\Payload\PayloadDomainEvent;
-use GpsLab\Component\Payload\Tests\Fixture\UpdatedContactEvent;
+use GpsLab\Component\Payload\Tests\Fixture\RenamedContactEvent;
 use GpsLab\Domain\Event\EventInterface;
 
 class PayloadDomainEventTest extends \PHPUnit_Framework_TestCase
@@ -25,7 +25,7 @@ class PayloadDomainEventTest extends \PHPUnit_Framework_TestCase
             'old_name' => 'foo',
             'new_name' => 'bar',
         ];
-        $query = new UpdatedContactEvent($payload);
+        $query = new RenamedContactEvent($payload);
 
         $this->assertEquals($payload['contact_id'], $query->contact_id);
         $this->assertEquals($payload['old_name'], $query->old_name);
@@ -42,7 +42,7 @@ class PayloadDomainEventTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrySetHideOption()
     {
-        new UpdatedContactEvent(['hide_option' => 'foo']);
+        new RenamedContactEvent(['hide_option' => 'foo']);
     }
 
     /**
@@ -50,6 +50,6 @@ class PayloadDomainEventTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrySetUndefinedOption()
     {
-        new UpdatedContactEvent(['undefined' => 'foo']);
+        new RenamedContactEvent(['undefined' => 'foo']);
     }
 }

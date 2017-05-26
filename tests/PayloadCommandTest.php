@@ -13,7 +13,7 @@ namespace GpsLab\Component\Payload\Tests;
 use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\PayloadMessage;
 use GpsLab\Component\Payload\PayloadCommand;
-use GpsLab\Component\Payload\Tests\Fixture\UpdateContactCommand;
+use GpsLab\Component\Payload\Tests\Fixture\RenameContactCommand;
 use GpsLab\Component\Command\Command;
 
 class PayloadCommandTest extends \PHPUnit_Framework_TestCase
@@ -22,12 +22,12 @@ class PayloadCommandTest extends \PHPUnit_Framework_TestCase
     {
         $payload = [
             'contact_id' => 123,
-            'name' => 'foo',
+            'new_name' => 'foo',
         ];
-        $query = new UpdateContactCommand($payload);
+        $query = new RenameContactCommand($payload);
 
         $this->assertEquals($payload['contact_id'], $query->contactId());
-        $this->assertEquals($payload['name'], $query->name());
+        $this->assertEquals($payload['new_name'], $query->newName());
         $this->assertEquals($payload, $query->payload());
         $this->assertInstanceOf(PayloadCommand::class, $query);
         $this->assertInstanceOf(Command::class, $query);
@@ -40,7 +40,7 @@ class PayloadCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrySetHideOption()
     {
-        new UpdateContactCommand(['hide_option' => 'foo']);
+        new RenameContactCommand(['hide_option' => 'foo']);
     }
 
     /**
@@ -48,6 +48,6 @@ class PayloadCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testTrySetUndefinedOption()
     {
-        new UpdateContactCommand(['undefined' => 'foo']);
+        new RenameContactCommand(['undefined' => 'foo']);
     }
 }
