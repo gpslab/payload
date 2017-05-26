@@ -4,6 +4,13 @@
     "type": "library",
     "homepage": "https://github.com/gpslab/payload",
     "description": "The simple infrastructure component for create payload message",
+    "keywords": [
+        "infrastructure",
+        "payload",
+        "payload-message",
+        "cqrs",
+        "domain-event"
+    ],
     "autoload": {
         "psr-4": {
             "GpsLab\\Component\\Payload\\": "src/"
