@@ -45,7 +45,9 @@ $message->name; // foo
 $message->payload(); // ['id' => 132, 'name' => 'foo']
 ```
 
-> **Notice:** All fields specified in the payload must be exist.
+> **Note**
+>
+> All fields specified in the payload must be exist.
 
 You can use protected fields for data. It's convenient to make the fields as read-only.
 
@@ -81,7 +83,9 @@ $message->name(); // foo
 $message->payload(); // ['id' => 132, 'name' => 'foo']
 ```
 
-> **Notice:** Private fields can't be filled.
+> **Note**
+>
+> Private fields can't be filled.
 
 
 ### CQRS
@@ -112,7 +116,7 @@ class ContactByIdentityQuery extends PayloadQuery
 
 You can use payload in [Domain Events](https://github.com/gpslab/domain-event).
 
-Event, contact was renamed
+Event, contact was renamed:
 
 ```php
 class RenamedContactEvent extends PayloadDomainEvent
