@@ -36,13 +36,13 @@ Fill the message
 
 ```php
 $message = new SimpleMessage([
-    'id' => 132,
+    'id' => 123,
     'name' => 'foo',
 ]);
 
 $message->id; // 123
 $message->name; // foo
-$message->payload(); // ['id' => 132, 'name' => 'foo']
+$message->payload(); // ['id' => 123, 'name' => 'foo']
 ```
 
 > **Note**
@@ -74,13 +74,13 @@ Fill the message
 
 ```php
 $message = new SimpleMessage([
-    'id' => 132,
+    'id' => 123,
     'name' => 'foo',
 ]);
 
 $message->id(); // 123
 $message->name(); // foo
-$message->payload(); // ['id' => 132, 'name' => 'foo']
+$message->payload(); // ['id' => 123, 'name' => 'foo']
 ```
 
 > **Note**
