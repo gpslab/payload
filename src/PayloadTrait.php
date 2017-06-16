@@ -37,8 +37,10 @@ trait PayloadTrait
      */
     final protected function setPayload(array $payload)
     {
+        $properties = $this->getProperties();
+
         foreach ($payload as $name => $value) {
-            if (!in_array($name, $this->getProperties())) {
+            if (!in_array($name, $properties)) {
                 throw UndefinedPropertyException::propertyOfClass($name, $this);
             }
 
