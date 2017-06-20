@@ -76,12 +76,12 @@ trait PayloadTrait
 
             $properties = $ref->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
             foreach ($properties as $property) {
-                $this->properties[] = $property->getName();
+                $this->properties[] = $property->name;
             }
 
             $methods = $ref->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
             foreach ($methods as $method) {
-                $this->methods[] = $method->getName();
+                $this->methods[] = $method->name;
             }
         }
     }
