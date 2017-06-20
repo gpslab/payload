@@ -164,6 +164,14 @@ class SimpleMessage extends PayloadMessage
 }
 ```
 
+This code throws exception:
+
+```php
+$message = new SimpleMessage([
+    'id' => 123,
+]);
+```
+
 ### CQRS
 
 You can use payload in [CQRS](https://github.com/gpslab/cqrs) infrastructure.
