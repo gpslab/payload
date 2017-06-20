@@ -39,17 +39,17 @@ trait PayloadTrait
 
     /**
      * @param array $payload
-     * @param bool  $required
+     * @param array $required
      *
      * @throws PropertyException
      */
-    final protected function setPayload(array $payload, $required = false)
+    final protected function setPayload(array $payload, array $required = [])
     {
-        $this->analyze();
-
-        if ($required && ($lost = array_diff($this->properties, array_keys($payload)))) {
+        if ($required && ($lost = array_diff($required, array_keys($payload)))) {
             throw PropertyException::noRequiredProperties($lost, $this);
         }
+
+        $this->analyze();
 
         foreach ($payload as $name => $value) {
             if (in_array($name, $this->properties)) {

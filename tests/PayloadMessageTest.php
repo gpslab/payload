@@ -32,6 +32,18 @@ class PayloadMessageTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \GpsLab\Component\Payload\Exception\PropertyException
      */
+    public function testSetPayloadNoRequiredProperties()
+    {
+        $payload = [
+            'id' => 123,
+        ];
+
+        new SomeMessage($payload);
+    }
+
+    /**
+     * @expectedException \GpsLab\Component\Payload\Exception\PropertyException
+     */
     public function testSetPayloadUndefinedProperty()
     {
         $payload = [

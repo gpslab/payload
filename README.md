@@ -149,7 +149,7 @@ class SimpleMessage extends PayloadMessage
 
     public function __construct(array $payload)
     {
-        $this->setPayload($payload, true);
+        $this->setPayload($payload, ['id', 'name']);
     }
 
     public function id()
