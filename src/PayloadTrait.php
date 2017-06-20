@@ -20,12 +20,12 @@ trait PayloadTrait
     private $payload = [];
 
     /**
-     * @var array
+     * @var string[]
      */
     private $properties = [];
 
     /**
-     * @var array
+     * @var string[]
      */
     private $methods = [];
 
@@ -38,49 +38,85 @@ trait PayloadTrait
     }
 
     /**
-     * @param array $payload
-     * @param array $required
+     * @param array    $payload
+     * @param string[] $required
      *
      * @throws PropertyException
      */
     final protected function setPayload(array $payload, array $required = [])
     {
-        if (!empty($required) && ($lost = array_diff($required, array_keys($payload)))) {
+        if ($lost = $this->lostProperties($payload, $required)) {
             throw PropertyException::noRequiredProperties($lost, $this);
         }
 
-        $this->analyze();
+        if (!$this->properties && !$this->methods) {
+            $ref = new \ReflectionClass($this);
+            $this->properties = $this->getProperties($ref);
+            $this->methods = $this->getMethods($ref);
+        }
 
         foreach ($payload as $name => $value) {
-            if (in_array($name, $this->properties)) {
-                $this->$name = $value;
-            } elseif (($method = 'set'.ucfirst($name)) && in_array($method, $this->methods)) {
-                $this->{$method}($value);
-            } else {
-                throw PropertyException::undefinedProperty($name, $this);
-            }
+            $this->setProperty($name, $value);
         }
 
         $this->payload = $payload;
     }
 
     /**
-     * @return array
+     * @param array    $payload
+     * @param string[] $required
+     *
+     * @return string[]
      */
-    private function analyze()
+    private function lostProperties(array $payload, array $required = [])
     {
-        if (!$this->properties && !$this->methods) {
-            $ref = new \ReflectionClass($this);
+        return !empty($required) ? array_diff($required, array_keys($payload)) : [];
+    }
 
-            $properties = $ref->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
-            foreach ($properties as $property) {
-                $this->properties[] = $property->name;
-            }
-
-            $methods = $ref->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
-            foreach ($methods as $method) {
-                $this->methods[] = $method->name;
-            }
+    /**
+     * @param string $name
+     * @param mixed  $value
+     */
+    private function setProperty($name, $value)
+    {
+        if (in_array($name, $this->properties)) {
+            $this->$name = $value;
+        } elseif (($method = 'set'.ucfirst($name)) && in_array($method, $this->methods)) {
+            $this->{$method}($value);
+        } else {
+            throw PropertyException::undefinedProperty($name, $this);
         }
+    }
+
+    /**
+     * @param \ReflectionClass $ref
+     *
+     * @return string[]
+     */
+    private function getProperties(\ReflectionClass $ref)
+    {
+        $names = [];
+        $properties = $ref->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
+        foreach ($properties as $property) {
+            $names[] = $property->name;
+        }
+
+        return $names;
+    }
+
+    /**
+     * @param \ReflectionClass $ref
+     *
+     * @return string[]
+     */
+    private function getMethods(\ReflectionClass $ref)
+    {
+        $names = [];
+        $methods = $ref->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
+        foreach ($methods as $method) {
+            $names[] = $method->name;
+        }
+
+        return $names;
     }
 }
