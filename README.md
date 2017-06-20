@@ -87,6 +87,33 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 >
 > Private fields can't be filled.
 
+### Required properties
+
+You can mark all payload properties as a required.
+
+```php
+class SimpleMessage extends PayloadMessage
+{
+    protected $id = 0;
+
+    protected $name = '';
+
+    public function __construct(array $payload)
+    {
+        $this->setPayload($payload, true);
+    }
+
+    public function id()
+    {
+        return $this->id;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+}
+```
 
 ### CQRS
 
