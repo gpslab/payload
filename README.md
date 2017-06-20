@@ -138,7 +138,7 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 
 ### Required properties
 
-You can mark all payload properties as a required.
+You can mark some properties as a required.
 
 ```php
 class SimpleMessage extends PayloadMessage
