@@ -54,13 +54,11 @@ trait PayloadTrait
         foreach ($payload as $name => $value) {
             if (in_array($name, $this->properties)) {
                 $this->$name = $value;
-                continue;
             } elseif (($method = 'set'.ucfirst($name)) && in_array($method, $this->methods)) {
                 $this->{$method}($value);
-                continue;
+            } else {
+                throw PropertyException::undefinedProperty($name, $this);
             }
-
-            throw PropertyException::undefinedProperty($name, $this);
         }
 
         $this->payload = $payload;
