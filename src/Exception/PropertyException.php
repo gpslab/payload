@@ -10,15 +10,15 @@
 
 namespace GpsLab\Component\Payload\Exception;
 
-class UndefinedPropertyException extends \RuntimeException
+class PropertyException extends \RuntimeException
 {
     /**
      * @param string $property
      * @param object $class
      *
-     * @return self
+     * @return PropertyException
      */
-    public static function propertyOfClass($property, $class)
+    public static function undefinedProperty($property, $class)
     {
         return new self(sprintf('Undefined property "%s" of class "%s"', $property, get_class($class)));
     }

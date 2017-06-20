@@ -10,7 +10,7 @@
 
 namespace GpsLab\Component\Payload;
 
-use GpsLab\Component\Payload\Exception\UndefinedPropertyException;
+use GpsLab\Component\Payload\Exception\PropertyException;
 
 trait PayloadTrait
 {
@@ -34,6 +34,8 @@ trait PayloadTrait
 
     /**
      * @param array $payload
+     *
+     * @throws PropertyException
      */
     final protected function setPayload(array $payload)
     {
@@ -41,7 +43,7 @@ trait PayloadTrait
 
         foreach ($payload as $name => $value) {
             if (!in_array($name, $properties)) {
-                throw UndefinedPropertyException::propertyOfClass($name, $this);
+                throw PropertyException::undefinedProperty($name, $this);
             }
 
             $this->$name = $value;

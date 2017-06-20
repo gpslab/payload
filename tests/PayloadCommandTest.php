@@ -36,7 +36,7 @@ class PayloadCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \GpsLab\Component\Payload\Exception\UndefinedPropertyException
+     * @expectedException \GpsLab\Component\Payload\Exception\PropertyException
      */
     public function testTrySetHideOption()
     {
@@ -44,7 +44,7 @@ class PayloadCommandTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \GpsLab\Component\Payload\Exception\UndefinedPropertyException
+     * @expectedException \GpsLab\Component\Payload\Exception\PropertyException
      */
     public function testTrySetUndefinedOption()
     {
