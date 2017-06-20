@@ -45,7 +45,7 @@ trait PayloadTrait
      */
     final protected function setPayload(array $payload, array $required = [])
     {
-        if ($required && ($lost = array_diff($required, array_keys($payload)))) {
+        if (!empty($required) && ($lost = array_diff($required, array_keys($payload)))) {
             throw PropertyException::noRequiredProperties($lost, $this);
         }
 
