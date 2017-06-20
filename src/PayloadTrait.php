@@ -25,6 +25,11 @@ trait PayloadTrait
     private $properties = [];
 
     /**
+     * @var array
+     */
+    private $methods = [];
+
+    /**
      * @return array
      */
     final public function payload()
@@ -40,18 +45,22 @@ trait PayloadTrait
      */
     final protected function setPayload(array $payload, $required = false)
     {
-        $properties = $this->getProperties();
+        $this->analyze();
 
-        if ($required && ($lost = array_diff($properties, array_keys($payload)))) {
+        if ($required && ($lost = array_diff($this->properties, array_keys($payload)))) {
             throw PropertyException::noRequiredProperties($lost, $this);
         }
 
         foreach ($payload as $name => $value) {
-            if (!in_array($name, $properties)) {
-                throw PropertyException::undefinedProperty($name, $this);
+            if (in_array($name, $this->properties)) {
+                $this->$name = $value;
+                continue;
+            } elseif (($method = 'set'.ucfirst($name)) && in_array($method, $this->methods)) {
+                $this->{$method}($value);
+                continue;
             }
 
-            $this->$name = $value;
+            throw PropertyException::undefinedProperty($name, $this);
         }
 
         $this->payload = $payload;
@@ -60,16 +69,20 @@ trait PayloadTrait
     /**
      * @return array
      */
-    private function getProperties()
+    private function analyze()
     {
-        if (!$this->properties) {
+        if (!$this->properties && !$this->methods) {
             $ref = new \ReflectionClass($this);
-            $properties = $ref->getProperties(\ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PUBLIC);
+
+            $properties = $ref->getProperties(\ReflectionProperty::IS_PUBLIC | \ReflectionProperty::IS_PROTECTED);
             foreach ($properties as $property) {
                 $this->properties[] = $property->getName();
             }
-        }
 
-        return $this->properties;
+            $methods = $ref->getMethods(\ReflectionMethod::IS_PUBLIC | \ReflectionMethod::IS_PROTECTED);
+            foreach ($methods as $method) {
+                $this->methods[] = $method->getName();
+            }
+        }
     }
 }

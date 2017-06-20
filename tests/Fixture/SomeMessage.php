@@ -17,25 +17,17 @@ class SomeMessage extends PayloadMessage
     /**
      * @var int
      */
-    protected $id = 0;
+    private $id = 0;
 
     /**
      * @var string
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * @var \DateTime
      */
-    protected $date;
-
-    /**
-     * @param array $payload
-     */
-    public function __construct(array $payload)
-    {
-        $this->setPayload($payload, true);
-    }
+    private $date;
 
     /**
      * @return int
@@ -43,6 +35,14 @@ class SomeMessage extends PayloadMessage
     public function id()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    protected function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -54,10 +54,26 @@ class SomeMessage extends PayloadMessage
     }
 
     /**
+     * @param string $name
+     */
+    protected function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @return \DateTime
      */
     public function date()
     {
         return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    protected function setDate(\DateTime $date)
+    {
+        $this->date = clone $date;
     }
 }

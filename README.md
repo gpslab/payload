@@ -19,7 +19,7 @@ composer require gpslab/payload
 
 ## Usage
 
-This library automatically fill the fields of the object with payload data.
+This library automatically fill the properties of the object with payload data.
 
 For example, create a simple message
 
@@ -49,7 +49,9 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 >
 > All fields specified in the payload must be exist.
 
-You can use protected fields for data. It's convenient to make the fields as read-only.
+### Protected properties
+
+You can use protected properties for data. It's convenient to make the properties as read-only.
 
 ```php
 class SimpleMessage extends PayloadMessage
@@ -85,7 +87,54 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 
 > **Note**
 >
-> Private fields can't be filled.
+> For fill private properties you mast use setters.
+
+### Property setters
+
+You can mark properties as private and use setters for fill it. This will ensure the security of data and control their
+type. You can mark the setters as protected to close the class from changes from the outside.
+
+```php
+class SimpleMessage extends PayloadMessage
+{
+    private $id = 0;
+
+    private $name = '';
+
+    public function id()
+    {
+        return $this->id;
+    }
+
+    protected function setId(integer $id)
+    {
+        $this->id = $id;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+
+    protected function setName(string $name)
+    {
+        $this->name = $name;
+    }
+}
+```
+
+Fill the message
+
+```php
+$message = new SimpleMessage([
+    'id' => 123,
+    'name' => 'foo',
+]);
+
+$message->id(); // 123
+$message->name(); // foo
+$message->payload(); // ['id' => 123, 'name' => 'foo']
+```
 
 ### Required properties
 
