@@ -49,11 +49,7 @@ trait PayloadTrait
             throw PropertyException::noRequiredProperties($lost, $this);
         }
 
-        if (!$this->properties && !$this->methods) {
-            $ref = new \ReflectionClass($this);
-            $this->properties = $this->getProperties($ref);
-            $this->methods = $this->getMethods($ref);
-        }
+        $this->analyze();
 
         foreach ($payload as $name => $value) {
             $this->setProperty($name, $value);
@@ -85,6 +81,15 @@ trait PayloadTrait
             $this->{$method}($value);
         } else {
             throw PropertyException::undefinedProperty($name, $this);
+        }
+    }
+
+    private function analyze()
+    {
+        if (!$this->properties && !$this->methods) {
+            $ref = new \ReflectionClass($this);
+            $this->properties = $this->getProperties($ref);
+            $this->methods = $this->getMethods($ref);
         }
     }
 
