@@ -8,7 +8,7 @@
  * @license   http://opensource.org/licenses/MIT
  */
 
-namespace GpsLab\Component\Payload\Serializer\MessageResolver;
+namespace GpsLab\Component\Payload\Serializer\MessageTypeResolver;
 
 use GpsLab\Component\Payload\Payload;
 
@@ -21,7 +21,7 @@ use GpsLab\Component\Payload\Payload;
  *
  * Be careful with the use of this resolver and do not named message classes equally in different namespace.
  */
-class ClassNameMessageResolver implements MessageResolver
+class ClassNameMessageTypeResolver implements MessageTypeResolver
 {
     /**
      * @param Payload $message

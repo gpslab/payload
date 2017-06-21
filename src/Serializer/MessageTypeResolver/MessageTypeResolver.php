@@ -8,11 +8,11 @@
  * @license   http://opensource.org/licenses/MIT
  */
 
-namespace GpsLab\Component\Payload\Serializer\MessageResolver;
+namespace GpsLab\Component\Payload\Serializer\MessageTypeResolver;
 
 use GpsLab\Component\Payload\Payload;
 
-interface MessageResolver
+interface MessageTypeResolver
 {
     /**
      * @param Payload $message

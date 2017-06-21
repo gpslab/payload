@@ -11,21 +11,21 @@
 namespace GpsLab\Component\Payload\Serializer;
 
 use GpsLab\Component\Payload\Payload;
-use GpsLab\Component\Payload\Serializer\MessageResolver\MessageResolver;
+use GpsLab\Component\Payload\Serializer\MessageTypeResolver\MessageTypeResolver;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class TypedPayloadNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
-     * @var MessageResolver
+     * @var MessageTypeResolver
      */
     private $resolver;
 
     /**
-     * @param MessageResolver $resolver
+     * @param MessageTypeResolver $resolver
      */
-    public function __construct(MessageResolver $resolver)
+    public function __construct(MessageTypeResolver $resolver)
     {
         $this->resolver = $resolver;
     }

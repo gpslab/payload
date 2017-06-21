@@ -8,22 +8,22 @@
  * @license   http://opensource.org/licenses/MIT
  */
 
-namespace GpsLab\Component\Payload\Tests\Serializer\MessageResolver;
+namespace GpsLab\Component\Payload\Tests\Serializer\MessageTypeResolver;
 
 use GpsLab\Component\Payload\Payload;
-use GpsLab\Component\Payload\Serializer\MessageResolver\ClassNameMessageResolver;
+use GpsLab\Component\Payload\Serializer\MessageTypeResolver\ClassNameMessageTypeResolver;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
 
-class ClassNameMessageResolverTest extends \PHPUnit_Framework_TestCase
+class ClassNameMessageTypeResolverTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var ClassNameMessageResolver
+     * @var ClassNameMessageTypeResolver
      */
     private $resolver;
 
     protected function setUp()
     {
-        $this->resolver = new ClassNameMessageResolver();
+        $this->resolver = new ClassNameMessageTypeResolver();
     }
 
     /**

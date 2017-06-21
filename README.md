@@ -214,16 +214,16 @@ class RenamedContactEvent extends PayloadDomainEvent
 ```
 
 
-### Serializer
+### Serialize
 
 You can serialize messages with Symfony [serializer](https://symfony.com/doc/current/components/serializer.html)
 component. For do it you can use `PayloadNormalizer` or `TypedPayloadNormalizer` and
 [encode](https://symfony.com/doc/current/components/serializer.html#encoders) result to JSON, XML, YAML, CSV, etc.
 
 * `PayloadNormalizer` - can be used only for one class because he does not distinguish messages;
-* `TypedPayloadNormalizer` - adds to the normalized data the type of message received from `MessageResolver` service.
+* `TypedPayloadNormalizer` - adds to the normalized data the type of message received from `MessageTypeResolver` service.
 
-You can use `ClassNameMessageResolver` as a simplify resolver. It use the last part of class name as a messages type.
+You can use `ClassNameMessageTypeResolver` as a simplify resolver. It use the last part of class name as a messages type.
 
 * `\Acme\Demo\SomeMessage` converted to `SomeMessage`
 * `\Acme_Demo_SomeMessage` converted to `SomeMessage`
