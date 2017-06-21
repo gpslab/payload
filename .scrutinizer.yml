@@ -3,8 +3,3 @@ imports:
 
 tools:
     external_code_coverage: true
-
-checks:
-    php:
-        excluded_dependencies:
-            - scrutinizer/ocular
