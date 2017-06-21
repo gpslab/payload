@@ -15,7 +15,7 @@ use GpsLab\Component\Payload\Serializer\MessageResolver\MessageResolver;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-class PayloadNormalizer implements NormalizerInterface, DenormalizerInterface
+class TypedPayloadNormalizer implements NormalizerInterface, DenormalizerInterface
 {
     /**
      * @var MessageResolver
