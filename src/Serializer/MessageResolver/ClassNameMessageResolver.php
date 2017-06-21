@@ -19,7 +19,7 @@ use GpsLab\Component\Payload\Payload;
  *  \Acme\Demo\SomeMessage -> SomeMessage
  *  \Acme_Demo_SomeMessage -> SomeMessage
  *
- * Be careful with the use of this resolver and do not call message classes equally in different namespace.
+ * Be careful with the use of this resolver and do not named message classes equally in different namespace.
  */
 class ClassNameMessageResolver implements MessageResolver
 {
