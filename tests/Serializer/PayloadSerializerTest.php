@@ -93,7 +93,7 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
             'payload' => [
                 'id' => 123,
                 'name' => 'foo',
-            ]
+            ],
         ];
 
         /* @var $object \Acme_Demo_SomeMessage */
@@ -111,7 +111,7 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
             'type' => 'foo',
             'payload' => [
                 'foo' => 123,
-            ]
+            ],
         ];
 
         $this->resolver
