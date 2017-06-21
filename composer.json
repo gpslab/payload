@@ -19,7 +19,10 @@
     "autoload-dev": {
         "psr-4": {
             "GpsLab\\Component\\Payload\\Tests\\": "tests/"
-        }
+        },
+        "classmap": [
+            "tests/Fixture/Acme_Demo_SomeMessage.php"
+        ]
     },
     "require": {
         "php": ">=5.5.0"
