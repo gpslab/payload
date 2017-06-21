@@ -7,9 +7,4 @@ tools:
 checks:
     php:
         excluded_dependencies:
-            - gpslab/cqrs
-            - gpslab/domain-event
-            - symfony/serializer
-            - phpunit/phpunit
             - scrutinizer/ocular
-            - satooshi/php-coveralls
