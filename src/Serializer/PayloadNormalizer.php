@@ -61,6 +61,18 @@ class PayloadNormalizer implements NormalizerInterface, DenormalizerInterface
      */
     public function supportsDenormalization($data, $type, $format = null)
     {
-        return is_array($data) && is_subclass_of($type, Payload::class);
+        if (!is_array($data)) {
+            return false;
+        }
+
+        // bigfix for is_subclass_of()
+        // @see https://bugs.php.net/bug.php?id=53727
+        try {
+            $ref = new \ReflectionClass($type);
+        } catch (\Exception $e) {
+            return false; // class does not exist
+        }
+
+        return $ref->implementsInterface(Payload::class);
     }
 }
