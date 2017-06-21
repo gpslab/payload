@@ -86,24 +86,6 @@ class TypedPayloadNormalizerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->serializer->supportsDenormalization($data, 'foo'));
     }
 
-    public function testDenormalize()
-    {
-        $data = [
-            'type' => 'SomeMessage',
-            'payload' => [
-                'id' => 123,
-                'name' => 'foo',
-            ],
-        ];
-
-        /* @var $object \Acme_Demo_SomeMessage */
-        $object = $this->serializer->denormalize($data, \Acme_Demo_SomeMessage::class);
-
-        $this->assertInstanceOf(\Acme_Demo_SomeMessage::class, $object);
-        $this->assertEquals($data['payload']['id'], $object->id);
-        $this->assertEquals($data['payload']['name'], $object->name);
-    }
-
     public function testSupportsDenormalizationInvalidType()
     {
         $type = 'bar';
@@ -122,5 +104,43 @@ class TypedPayloadNormalizerTest extends \PHPUnit_Framework_TestCase
         ;
 
         $this->assertFalse($this->serializer->supportsDenormalization($data, $type));
+    }
+
+    public function testSupportsDenormalization()
+    {
+        $type = 'bar';
+        $data = [
+            'type' => $type,
+            'payload' => [
+                'foo' => 123,
+            ],
+        ];
+
+        $this->resolver
+            ->expects($this->once())
+            ->method('isTypeOfMessage')
+            ->with($data['type'], $type)
+            ->will($this->returnValue(true))
+        ;
+
+        $this->assertTrue($this->serializer->supportsDenormalization($data, $type));
+    }
+
+    public function testDenormalize()
+    {
+        $data = [
+            'type' => 'SomeMessage',
+            'payload' => [
+                'id' => 123,
+                'name' => 'foo',
+            ],
+        ];
+
+        /* @var $object \Acme_Demo_SomeMessage */
+        $object = $this->serializer->denormalize($data, \Acme_Demo_SomeMessage::class);
+
+        $this->assertInstanceOf(\Acme_Demo_SomeMessage::class, $object);
+        $this->assertEquals($data['payload']['id'], $object->id);
+        $this->assertEquals($data['payload']['name'], $object->name);
     }
 }
