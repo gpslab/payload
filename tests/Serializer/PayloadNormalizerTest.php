@@ -12,10 +12,10 @@ namespace GpsLab\Component\Payload\Tests\Serializer;
 
 use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\Serializer\MessageResolver\MessageResolver;
-use GpsLab\Component\Payload\Serializer\PayloadSerializer;
+use GpsLab\Component\Payload\Serializer\PayloadNormalizer;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
 
-class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
+class PayloadNormalizerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|MessageResolver
@@ -23,14 +23,14 @@ class PayloadSerializerTest extends \PHPUnit_Framework_TestCase
     private $resolver;
 
     /**
-     * @var PayloadSerializer
+     * @var PayloadNormalizer
      */
     private $serializer;
 
     protected function setUp()
     {
         $this->resolver = $this->getMock(MessageResolver::class);
-        $this->serializer = new PayloadSerializer($this->resolver);
+        $this->serializer = new PayloadNormalizer($this->resolver);
     }
 
     public function testSupportsNormalization()
