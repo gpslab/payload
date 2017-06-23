@@ -62,6 +62,11 @@ class PayloadNormalizerTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->serializer->supportsDenormalization($payload, ContactByIdentityQuery::class));
     }
 
+    public function testSupportsDenormalizationNoClass()
+    {
+        $this->assertFalse($this->serializer->supportsDenormalization(['id' => 123], 'foo'));
+    }
+
     public function testDenormalize()
     {
         $payload = [
