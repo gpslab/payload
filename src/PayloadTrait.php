@@ -38,17 +38,12 @@ trait PayloadTrait
     }
 
     /**
-     * @param array    $payload
-     * @param string[] $required
+     * @param array $payload
      *
      * @throws PropertyException
      */
-    final protected function setPayload(array $payload, array $required = [])
+    final protected function setPayload(array $payload)
     {
-        if ($lost = $this->lostProperties($payload, $required)) {
-            throw PropertyException::noRequiredProperties($lost, $this);
-        }
-
         $this->analyze();
 
         foreach ($payload as $name => $value) {
@@ -56,17 +51,6 @@ trait PayloadTrait
         }
 
         $this->payload = $payload;
-    }
-
-    /**
-     * @param array    $payload
-     * @param string[] $required
-     *
-     * @return string[]
-     */
-    private function lostProperties(array $payload, array $required = [])
-    {
-        return !empty($required) ? array_diff($required, array_keys($payload)) : [];
     }
 
     /**

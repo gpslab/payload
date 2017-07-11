@@ -30,14 +30,6 @@ class SomeMessage extends PayloadMessage
     private $date;
 
     /**
-     * @param array $payload
-     */
-    public function __construct(array $payload)
-    {
-        $this->setPayload($payload, ['id', 'name', 'date']);
-    }
-
-    /**
      * @return int
      */
     public function id()

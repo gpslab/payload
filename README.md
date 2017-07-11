@@ -136,42 +136,6 @@ $message->name(); // foo
 $message->payload(); // ['id' => 123, 'name' => 'foo']
 ```
 
-### Required properties
-
-You can mark some properties as a required.
-
-```php
-class SimpleMessage extends PayloadMessage
-{
-    protected $id = 0;
-
-    protected $name = '';
-
-    public function __construct(array $payload)
-    {
-        $this->setPayload($payload, ['id', 'name']);
-    }
-
-    public function id()
-    {
-        return $this->id;
-    }
-
-    public function name()
-    {
-        return $this->name;
-    }
-}
-```
-
-This code throws exception:
-
-```php
-$message = new SimpleMessage([
-    'id' => 123,
-]);
-```
-
 ### CQRS
 
 You can use payload in [CQRS](https://github.com/gpslab/cqrs) infrastructure.

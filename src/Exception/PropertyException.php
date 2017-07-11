@@ -22,15 +22,4 @@ class PropertyException extends \RuntimeException
     {
         return new self(sprintf('Undefined property "%s" of class "%s"', $property, get_class($class)));
     }
-
-    /**
-     * @param array $lost
-     * @param object $class
-     *
-     * @return PropertyException
-     */
-    public static function noRequiredProperties(array $lost, $class)
-    {
-        return new self(sprintf('No required property "%s" of class "%s"', implode('", "', $lost), get_class($class)));
-    }
 }
