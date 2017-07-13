@@ -101,7 +101,7 @@ class SimpleMessage extends PayloadMessage
 
     private $name = '';
 
-    public function id()
+    public function id(): integer
     {
         return $this->id;
     }
@@ -111,7 +111,7 @@ class SimpleMessage extends PayloadMessage
         $this->id = $id;
     }
 
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
