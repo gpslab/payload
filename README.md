@@ -47,7 +47,7 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 
 > **Note**
 >
-> All fields specified in the payload must be exist.
+> All fields specified in the payload must exist.
 
 ### Protected properties
 
@@ -87,7 +87,7 @@ $message->payload(); // ['id' => 123, 'name' => 'foo']
 
 > **Note**
 >
-> For fill private properties you mast use setters.
+> For fill private properties you must use setters.
 
 ### Property setters
 
