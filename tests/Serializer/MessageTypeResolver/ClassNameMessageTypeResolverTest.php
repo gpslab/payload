@@ -13,8 +13,9 @@ namespace GpsLab\Component\Payload\Tests\Serializer\MessageTypeResolver;
 use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\Serializer\MessageTypeResolver\ClassNameMessageTypeResolver;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
+use PHPUnit\Framework\TestCase;
 
-class ClassNameMessageTypeResolverTest extends \PHPUnit_Framework_TestCase
+class ClassNameMessageTypeResolverTest extends TestCase
 {
     /**
      * @var ClassNameMessageTypeResolver

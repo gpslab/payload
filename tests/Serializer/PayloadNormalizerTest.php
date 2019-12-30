@@ -13,8 +13,9 @@ namespace GpsLab\Component\Payload\Tests\Serializer;
 use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\Serializer\PayloadNormalizer;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
+use PHPUnit\Framework\TestCase;
 
-class PayloadNormalizerTest extends \PHPUnit_Framework_TestCase
+class PayloadNormalizerTest extends TestCase
 {
     /**
      * @var PayloadNormalizer

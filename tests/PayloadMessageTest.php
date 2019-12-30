@@ -11,8 +11,9 @@
 namespace GpsLab\Component\Payload\Tests;
 
 use GpsLab\Component\Payload\Tests\Fixture\SomeMessage;
+use PHPUnit\Framework\TestCase;
 
-class PayloadMessageTest extends \PHPUnit_Framework_TestCase
+class PayloadMessageTest extends TestCase
 {
     public function testSetPayload()
     {

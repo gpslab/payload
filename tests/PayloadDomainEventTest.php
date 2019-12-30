@@ -15,8 +15,9 @@ use GpsLab\Component\Payload\PayloadMessage;
 use GpsLab\Component\Payload\PayloadDomainEvent;
 use GpsLab\Component\Payload\Tests\Fixture\RenamedContactEvent;
 use GpsLab\Domain\Event\EventInterface;
+use PHPUnit\Framework\TestCase;
 
-class PayloadDomainEventTest extends \PHPUnit_Framework_TestCase
+class PayloadDomainEventTest extends TestCase
 {
     public function testSetPayload()
     {
