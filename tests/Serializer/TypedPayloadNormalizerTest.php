@@ -14,8 +14,9 @@ use GpsLab\Component\Payload\Payload;
 use GpsLab\Component\Payload\Serializer\MessageTypeResolver\MessageTypeResolver;
 use GpsLab\Component\Payload\Serializer\TypedPayloadNormalizer;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
+use PHPUnit\Framework\TestCase;
 
-class TypedPayloadNormalizerTest extends \PHPUnit_Framework_TestCase
+class TypedPayloadNormalizerTest extends TestCase
 {
     /**
      * @var \PHPUnit_Framework_MockObject_MockObject|MessageTypeResolver

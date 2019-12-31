@@ -15,8 +15,9 @@ use GpsLab\Component\Payload\PayloadMessage;
 use GpsLab\Component\Payload\PayloadCommand;
 use GpsLab\Component\Payload\Tests\Fixture\RenameContactCommand;
 use GpsLab\Component\Command\Command;
+use PHPUnit\Framework\TestCase;
 
-class PayloadCommandTest extends \PHPUnit_Framework_TestCase
+class PayloadCommandTest extends TestCase
 {
     public function testSetPayload()
     {

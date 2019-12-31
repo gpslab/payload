@@ -15,8 +15,9 @@ use GpsLab\Component\Payload\PayloadMessage;
 use GpsLab\Component\Payload\PayloadQuery;
 use GpsLab\Component\Payload\Tests\Fixture\ContactByIdentityQuery;
 use GpsLab\Component\Query\Query;
+use PHPUnit\Framework\TestCase;
 
-class PayloadQueryTest extends \PHPUnit_Framework_TestCase
+class PayloadQueryTest extends TestCase
 {
     public function testSetPayload()
     {
